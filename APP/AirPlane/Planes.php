@@ -13,6 +13,7 @@ namespace APP\AirPlane;
 
 
 use Exceptions\MyException;
+use Response\ErrorCode;
 use Response\ResponseData;
 use Transform\PlanesTransform;
 
@@ -54,15 +55,10 @@ class Planes
             TraitResponse::fail($getPlanesMoment);
         }*/
 
-        // 将设置的数据转化为需要的数据
-        try {
-            $planeSolution->transformData('planeMoment');
-        } catch (MyException $e) {
-            ResponseData::error($e);
-        }
-        list($airPlanes, $count) = $planeSolution->countOfAirPlanes();
-        PlanesTransform::show("空中最多有 {$count} 架飞机");
-        PlanesTransform::show("最多飞机的时间段为 {$airPlanes['startTime']} 点 - {$airPlanes['endTime']}点");
+        $result = $planeSolution->countOfAirPlanes();
+        if($result instanceof ErrorCode) ResponseData::error($result);
+        PlanesTransform::show("空中最多有 {$result['ans']} 架飞机");
+        PlanesTransform::show("最多飞机的时间段为 {$result['airPlanes']['startTime']} 点 - {$result['airPlanes']['endTime']}点");
     }
 
 

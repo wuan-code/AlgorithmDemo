@@ -14,9 +14,13 @@ namespace Enums;
 
 class AppEnum
 {
-
+    // 默认的项目
     const DEFAULT_PROJECT = ['plane'];
-    const ALL_PROJECT = ['plane','reward'];
-    const ALL_PROJECT_FUNCTION = ['plane'=>'APP\AirPlane\Planes','reward'=>'APP\Reward\Reward'];
+    // 所有可执行的项目
+    const ALL_PROJECT = ['plane', 'reward', 'bucketSort'];
+    // 项目对应的方法（其实可以合并在一起，用array_keys()方法来获取key）
+    const ALL_PROJECT_FUNCTION = ['plane'      => 'APP\AirPlane\Planes',
+                                  'reward'     => 'APP\Reward\Reward',
+                                  'bucketSort' => 'APP\BucketSort\Index'];
 
 }

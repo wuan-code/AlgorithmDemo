@@ -1,28 +1,23 @@
 <?php
 // +----------------------------------------------------------------------
-// | 打印模块的类
+// | 桶排序的基本算法
 // +----------------------------------------------------------------------
 // | author    武安y<yaobin24@126.com>
 // +----------------------------------------------------------------------
 // | note
 // +----------------------------------------------------------------------
-// | Date       2018/12/14 Time: 下午4:47
+// | Date       2018/12/18 Time: 上午11:59
 // +----------------------------------------------------------------------
 
-namespace Response;
+namespace BucketSort;
 
 
-class EchoResponse implements Response
+class Index
 {
 
-    public static function json(array $data = [])
+    public function __construct()
     {
-        echo json_encode($data);
-    }
+        var_dump('bucket sort');die;
 
-    public static function web($data)
-    {
-        var_dump($data);
     }
-
 }

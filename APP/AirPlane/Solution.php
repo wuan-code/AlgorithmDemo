@@ -14,7 +14,7 @@ namespace APP\AirPlane;
 
 use Enums\PlaneEnum;
 use Exceptions\MyException;
-use Library\ErrorCode;
+use Response\ErrorCode;
 
 class Solution
 {
@@ -24,10 +24,6 @@ class Solution
 
     private $planeMomentData;
 
-    private $count = 0;
-    private $ans = 0;
-
-    private $airPlanes = [];
 
     /**
      * 不允许外部实例
@@ -89,38 +85,26 @@ class Solution
         return $this->$propertyName;
     }
 
-
     /**
-     * 转换数组，变成需要的数据
-     * @param $property
-     * @throws MyException
+     * 计算飞机
+     * @return array|\Response\ErrorCode
      */
-    public function transformData($property)
-    {
-        if (!$this->$property || !is_array($this->$property)) {
-            throw new MyException('TRANSFORM_DATA_FAIL');
-        }
-        $data = $property . 'Data';
-        foreach ($this->$property as $key => $value) {
-            $this->$data[] = ['time' => $value['startTime'], 'flog' => 0];
-            $this->$data[] = ['time' => $value['endTime'], 'flog' => 1];
-        }
-        sort($this->$data);
-    }
-
     public function countOfAirPlanes()
     {
         $maxArray = [];
+        $count = $ans = 0;
+        if(!$this->planeMoment) return new ErrorCode('REQUEST_ERROR');
+        $this->planeMomentData  = transformPlanes($this->planeMoment);
         foreach ($this->planeMomentData as $key => $value) {
             if ($value['flog'] == 0) {
-                $this->count++;
+                $count++;
             } else {
-                $this->count--;
+                $count--;
             }
-            $this->ans = max($this->ans, $this->count);
-            if ($this->count == $this->ans) {
+            $ans = max($ans, $count);
+            if ($count == $ans) {
                 $maxArray[$key] = [
-                    'time'      => $this->ans,
+                    'time'      => $ans,
                     'startTime' => $value['time'],
                 ];
             }
@@ -128,7 +112,7 @@ class Solution
                 $maxArray[$key - 1]['endTime'] = $value['time'];
             }
         }
-        $this->airPlanes = max($maxArray);
-        return [$this->airPlanes, $this->ans];
+        $airPlanes = max($maxArray);
+        return compact('airPlanes', 'ans');
     }
 }

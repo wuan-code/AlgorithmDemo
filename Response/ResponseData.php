@@ -78,7 +78,7 @@ class ResponseData extends BaseResponse
             $response = [
                 "status" => "error",
                 "code"   => $codeEnum->code,
-                "msg"    => empty($codeEnum->notice) ? $codeEnum['msg'] : $codeEnum['msg'] . " (提示:{$codeEnum->notice})",
+                "msg"    => empty($codeEnum->notice) ? $codeEnum->msg : $codeEnum->msg . " (提示:{$codeEnum->notice})",
             ];
             return call_user_func_array(array(__CLASS__, self::$returnType), [$response]);
         }

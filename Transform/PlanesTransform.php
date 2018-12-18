@@ -31,7 +31,7 @@ class PlanesTransform extends Transform
 
     public static function json($data)
     {
-        if (self::$funcion == 'Table') {
+        if (self::$function == 'Table') {
             self::jsonTable($data);
         } else {
             echo "$data<br/>";
@@ -40,7 +40,7 @@ class PlanesTransform extends Transform
 
     public static function print($data)
     {
-        if (self::$funcion == 'Table') {
+        if (self::$function == 'Table') {
             self::printTable($data);
         } else {
             echo "$data\n\n";

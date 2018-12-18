@@ -15,7 +15,7 @@ namespace Transform;
 abstract class Transform
 {
     public static $returnType;
-    public static $funcion;
+    public static $function;
 
     public abstract static function json($data);
 
@@ -30,15 +30,15 @@ abstract class Transform
         switch ($GLOBALS['mode']) {
             case 'cli':
                 self::$returnType = 'print';
-                self::$funcion    = $function;
+                self::$function   = $function;
                 break;
             case 'fpm-fcgi':
                 self::$returnType = 'json';
-                self::$funcion    = $function;
+                self::$function   = $function;
                 break;
             default:
                 self::$returnType = 'print';
-                self::$funcion    = $function;
+                self::$function   = $function;
                 break;
         }
     }
