@@ -30,3 +30,5 @@
 10、trait:Library\Log.php (todo... 详情参考：http://php.net/manual/en/language.oop5.traits.php)
 
 11、工厂模式:Transform
+
+12、枚举:Enums
