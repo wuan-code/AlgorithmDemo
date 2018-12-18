@@ -27,3 +27,23 @@ if (!function_exists("transformPlanes")) {
         return $result;
     }
 }
+
+
+
+if (!function_exists("getKeysByThreeDimensionalArray")) {
+    /**
+     * 获取三维数组的keys
+     * @param $data
+     * @return array
+     */
+    function getKeysByThreeDimensionalArray($data)
+    {
+        $keys = [];
+        foreach ($data as  $value){
+            foreach ($value as $k => $v){
+                $keys[$k]= $k;
+            }
+        }
+        return $keys;
+    }
+}

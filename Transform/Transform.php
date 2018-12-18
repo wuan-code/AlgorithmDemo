@@ -14,31 +14,21 @@ namespace Transform;
 
 abstract class Transform
 {
-    public static $returnType;
-    public static $function;
+    public static $factory;
 
-    public abstract static function json($data);
+    abstract public static function show($data);
 
-    public abstract static function print($data);
-
-    /**
-     * 设置返回的模式
-     * @param string $function
-     */
-    public static function setReturnType($function = '')
+    public static function setFactory()
     {
         switch ($GLOBALS['mode']) {
             case 'cli':
-                self::$returnType = 'print';
-                self::$function   = $function;
+                self::$factory = 'Transform\Factory\CliFactory';
                 break;
             case 'fpm-fcgi':
-                self::$returnType = 'json';
-                self::$function   = $function;
+                self::$factory = 'Transform\Factory\FpmFactory';
                 break;
             default:
-                self::$returnType = 'print';
-                self::$function   = $function;
+                self::$factory = 'Transform\Factory\CliFactory';
                 break;
         }
     }
