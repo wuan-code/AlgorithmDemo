@@ -6,7 +6,7 @@
 #### 如果想在本地cli实现程序，需要安装依赖  composer update ,执行方法和效果如下
 ![image](https://github.com/yaobin24/AlgorithmDemo/blob/master/screenshot/cli.png)
 
-#### 你将会用到的知识点
+#### 你将接触到到的知识点
 1、interface:Response\Response.php(定义了相应数据的接口)
 
 2、abstract:Response\BaseResponse.php(定义了成功和失败状态的抽象方法)
@@ -15,16 +15,17 @@
 
 4、final:Library\RequestMode.php(请求模式的类，不可以被修改)
 
-
 5、反射API:Enums\CodeEnum.php (ReflectionClass)
 
 6、instanceof:APP\AirPlane\Planes.php( instanceof 用于确定一个 PHP 变量是否属于某一类 class 的实例)
 
-7、异常（try...catch):index.php 
+7、异常（try...catch throw):index.php 
 
 8、单例模式:APP\AirPlane\Solution.php
 
-9、spl_autoload_register:index.php
+9、自动加载:index.php
+>题外话：为了实现cli的table展示，添加了composer，当时遇到一个小坑，composer的自动加载和我自己写的自动加载冲突了，刚开始没看手册，走了很多弯路。特此说明：spl_autoload_register() 按定义时的顺序逐个执行 
+*多看手册*
 
 10、trait:Library\Log.php (todo... 详情参考：http://php.net/manual/en/language.oop5.traits.php)
 
