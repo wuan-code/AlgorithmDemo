@@ -21,13 +21,13 @@ $response    .= $field;
 ```
 
 #### 你将接触到到的知识点
-1、interface:Response\Response.php(定义了相应数据的接口)
+1、interface:Response\Response.php
 
-2、abstract:Response\BaseResponse.php(定义了成功和失败状态的抽象方法)
+2、abstract:Response\BaseResponse.php
 
-3、extends:Response\ResponseData.php（继承BaseResponse.php，并实现了抽象方法）
+3、extends:Response\ResponseData.php
 
-4、final:Library\RequestMode.php(请求模式的类，不可以被修改)
+4、final:Library\RequestMode.php
 
 5、反射API:Enums\CodeEnum.php (ReflectionClass)
 
@@ -44,3 +44,5 @@ $response    .= $field;
 10、trait:Library\Log.php (todo... 详情参考：http://php.net/manual/en/language.oop5.traits.php)
 
 11、工厂模式:Transform
+
+12、枚举:Enums
