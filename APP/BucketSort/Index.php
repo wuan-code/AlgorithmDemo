@@ -4,7 +4,7 @@
 // +----------------------------------------------------------------------
 // | author    武安y<yaobin24@126.com>
 // +----------------------------------------------------------------------
-// | note
+// | note 桶排序适用于元素集合不大的场景:例如排行榜（0-100分）
 // +----------------------------------------------------------------------
 // | Date       2018/12/18
 // +----------------------------------------------------------------------
@@ -16,6 +16,10 @@ use Transform\BucketSortTransform;
 
 class Index
 {
+    public $bucketSortSolution;
+
+    protected $num;
+
     protected $data = [
         ['id' => 1, 'name' => '刘一', 'weight' => 10],
         ['id' => 2, 'name' => '陈二', 'weight' => 20],
@@ -38,12 +42,82 @@ class Index
     public function __construct()
     {
         $this->showData();
+        $this->getNum();
+        $this->bucketSortSolution = Solution::getInstance();
+        $this->sameProportionSort();
     }
 
 
+    /**
+     * 数据显示
+     */
     public function showData()
     {
-        // 页面展示
-        BucketSortTransform::show( $this->data,true);
+        BucketSortTransform::show("待操作的桶排序的数据:");
+        BucketSortTransform::show($this->data, true);
+    }
+
+
+    /**
+     * 获取待操作的数量
+     */
+    public function getNum()
+    {
+        if ($GLOBALS['mode'] == 'cli') {
+            echo "请输入待操作的数量\n\n";
+            $this->num = trim(fgets(STDIN));
+            if ($this->num == 'exit') exit("已结束该请求\n");
+            while (!is_numeric($this->num)) {
+                $this->getNum();
+            }
+        } else {
+            $getData   = $_GET;
+            $this->num = isset($getData['num']) ? $getData['num'] : 10000;
+        }
+    }
+
+
+    /**
+     * 按比例随机的排序实现方案
+     */
+    public function sameProportionSort()
+    {
+        $useData   = [];
+        $startTime = microtime(true);
+        $sortData  = $this->bucketSortSolution->sameProportionSort($this->num, $this->data);
+        for ($i = 0; $i < $this->num; $i++) {
+            $useData[$i]       = $this->bucketSortSolution->useData($sortData);
+            $useData[$i]['id'] = $i + 1;
+        }
+        $endTime = microtime(true);
+        $timeUse = $endTime - $startTime;
+
+        $newData = [];
+        foreach ($useData as $item) {
+            if (isset($newData[$item['manege_id']])) {
+                $newData[$item['manege_id']]['count'] += 1;
+            } else {
+                $newData[$item['manege_id']] = [
+                    'id'     => $item['manege_id'],
+                    'name'   => $item['name'],
+                    'weight' => $item['weight'],
+                    'count'  => 1,
+                ];
+            }
+        }
+
+        BucketSortTransform::show("具体分配详情:");
+        BucketSortTransform::show($useData, true);
+
+
+        BucketSortTransform::show("按比例随机的排序");
+        BucketSortTransform::show(str_repeat('-*-*', 10));
+        foreach ($newData as $key => $value) {
+            BucketSortTransform::show("操作人id:{$value['id']}\t名字:{$value['name']}\t权重:{$value['weight']}\t次数:{$value['count']}\t\t\t比例:" . round(($value['count'] / $this->num * 100), 2) . "%");
+        }
+        BucketSortTransform::show(str_repeat('-*-*', 10));
+        BucketSortTransform::show("使用时间:" . $timeUse);
+
+
     }
 }
