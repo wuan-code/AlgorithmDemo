@@ -46,3 +46,7 @@ $response    .= $field;
 11、工厂模式:Transform
 
 12、枚举:Enums
+
+13、桶排序:BucketSort（根据权重，按比例分配）
+
+14、扫描线算法基础:AirPlane(计算空中飞机)
