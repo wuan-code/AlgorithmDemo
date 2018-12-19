@@ -13,7 +13,6 @@ namespace Transform\BaseTransform;
 
 
 use jc21\CliTable;
-use jc21\CliTableManipulator;
 
 class CliTransform extends Transform
 {
@@ -25,8 +24,25 @@ class CliTransform extends Transform
     public  function showTable($data)
     {
         $table = new CliTable();
+        $table->setChars(array(
+            'top'          => '-',
+            'top-mid'      => '+',
+            'top-left'     => '+',
+            'top-right'    => '+',
+            'bottom'       => '-',
+            'bottom-mid'   => '+',
+            'bottom-left'  => '+',
+            'bottom-right' => '+',
+            'left'         => '|',
+            'left-mid'     => '+',
+            'mid'          => '-',
+            'mid-mid'      => '+',
+            'right'        => '|',
+            'right-mid'    => '+',
+            'middle'       => '| ',
+        ));
         $table->setTableColor('green');
-        $table->setHeaderColor('cyan');
+        $table->setHeaderColor('yellow');
         $keys = getKeysByThreeDimensionalArray($data);
         foreach ($keys as $k => $v){
             $table->addField($v, $k);

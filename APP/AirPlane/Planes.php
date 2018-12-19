@@ -35,7 +35,7 @@ class Planes
     public function planes()
     {
         // 页面展示
-        PlanesTransform::show( $this->planeMoment,true);
+        PlanesTransform::show($this->planeMoment,true);
         //实例化单例模式
         $planeSolution = Solution::getInstance();
         // 调用 __set()魔术方法，设置初始值

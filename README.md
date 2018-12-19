@@ -5,6 +5,20 @@
 
 #### 如果想在本地cli实现程序，需要安装依赖  composer update ,执行方法和效果如下
 ![image](https://github.com/yaobin24/AlgorithmDemo/blob/master/screenshot/cli.png)
+> 关于jc21/clitable依赖包的问题：该依赖包中文显示会少两个空格，所以需要在依赖包里面添加一段正则。
+```
+CliTable.php的getFormattedRow()方法中修改如下：
+
+$fieldLength  = strlen($field) + 1;
+
+if(preg_match('/^[\x7f-\xff]+$/', trim($field))) {
+    $field = $field.'  ';
+}
+
+$field        = ' '.($this->getUseColors() ? $this->getColorFromName($color) : '').$field;
+$response    .= $field;
+
+```
 
 #### 你将接触到到的知识点
 1、interface:Response\Response.php(定义了相应数据的接口)

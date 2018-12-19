@@ -12,6 +12,8 @@
 namespace App\BucketSort;
 
 
+use Transform\BucketSortTransform;
+
 class Index
 {
     protected $data = [
@@ -28,7 +30,7 @@ class Index
         ['id' => 11, 'name' => 'Tom', 'weight' => 80],
         ['id' => 12, 'name' => 'John', 'weight' => 99],
         ['id' => 13, 'name' => 'Foo', 'weight' => 70],
-        ['id' => 14, 'name' => 'Müller', 'weight' => 25],
+        ['id' => 14, 'name' => 'Muller', 'weight' => 25],
         ['id' => 15, 'name' => 'Stephen', 'weight' => 80],
     ];
 
@@ -41,6 +43,7 @@ class Index
 
     public function showData()
     {
-
+        // 页面展示
+        BucketSortTransform::show( $this->data,true);
     }
 }

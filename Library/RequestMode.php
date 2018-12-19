@@ -41,9 +41,7 @@ final class RequestMode extends Mode
      */
     public function cliMode()
     {
-        if ($this->count == 0) {
-            echo "请输入要执行的方法\n";
-        } else {
+        if ($this->count > 0) {
             echo "请输入要执行的方法或者输入exit结束本次进程\n";
         }
         $project = trim(fgets(STDIN));
