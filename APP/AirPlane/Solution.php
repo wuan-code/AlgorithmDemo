@@ -20,9 +20,9 @@ class Solution
 {
     public static $instance;
 
-    private $planeMoment;
+    protected $planeMoment;
 
-    private $planeMomentData;
+    protected $planeMomentData;
 
 
     /**
@@ -92,9 +92,9 @@ class Solution
     public function countOfAirPlanes()
     {
         $maxArray = [];
-        $count = $ans = 0;
-        if(!$this->planeMoment) return new ErrorCode('REQUEST_ERROR');
-        $this->planeMomentData  = transformPlanes($this->planeMoment);
+        $count    = $ans = 0;
+        if (!$this->planeMoment) return new ErrorCode('REQUEST_ERROR');
+        $this->planeMomentData = transformPlanes($this->planeMoment);
         foreach ($this->planeMomentData as $key => $value) {
             if ($value['flog'] == 0) {
                 $count++;

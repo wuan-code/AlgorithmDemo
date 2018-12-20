@@ -46,7 +46,7 @@ final class RequestMode extends Mode
 //        }
 //        $project = trim(fgets(STDIN));
 //        if ($project == 'exit') exit("已结束该请求\n");
-        $project         = 'bucketSort';
+        $project         = 'countingSort';
         while (!in_array($project, AppEnum::ALL_PROJECT)) {
             echo "该方法不存在，请重新输入\n\n";
             $this->count++;

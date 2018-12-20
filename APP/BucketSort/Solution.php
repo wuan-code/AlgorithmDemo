@@ -9,7 +9,7 @@
 // | Date       2018/12/19 Time: 上午10:27
 // +----------------------------------------------------------------------
 
-namespace App\BucketSort;
+namespace APP\BucketSort;
 
 
 class Solution

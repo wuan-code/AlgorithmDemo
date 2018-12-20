@@ -35,13 +35,13 @@ $response    .= $field;
 
 7、异常（try...catch throw):index.php 
 
-8、单例模式:APP\AirPlane\Solution.php
+8、单例模式:APP\AirPlane\Solution.php （题外话：还有多例模式(Multiton),比如连接数据库:mysql,oracle,sql server）
 
 9、自动加载:index.php
 >题外话：为了实现cli的table展示，添加了composer，当时遇到一个小坑，composer的自动加载和我自己写的自动加载冲突了，刚开始没看手册，走了很多弯路。特别重要：spl_autoload_register() 按定义时的顺序逐个执行 
 *多看手册*
 
-10、trait:Library\Log.php (todo... 详情参考：http://php.net/manual/en/language.oop5.traits.php)
+10、trait:APP\BaseApp (详情参考：http://php.net/manual/en/language.oop5.traits.php)
 
 11、工厂模式:Transform
 
@@ -50,3 +50,7 @@ $response    .= $field;
 13、桶排序:BucketSort（根据权重，按比例分配）
 
 14、扫描线算法基础:AirPlane(计算空中飞机)
+
+
+### 线性排序算法：计数排序、桶排序、基数排序
+

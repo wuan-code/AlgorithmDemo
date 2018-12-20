@@ -20,6 +20,7 @@ use Transform\PlanesTransform;
 class Planes
 {
     public $planeMoment = [];
+    public $planeSolution;
 
     public function __construct()
     {
@@ -29,29 +30,42 @@ class Planes
             ['plane'=>3,'startTime' => 5, 'endTime' => 8],
             ['plane'=>4,'startTime' => 4, 'endTime' => 7]
         ];
+        $this->planeSolution = Solution::getInstance();
         $this->planes();
+    }
+
+    /**
+     * 设置变量
+     * @param $name
+     * @param $value
+     * @note 过滤未定义的变量
+     */
+    public function __set($name, $value)
+    {
+        if (isset($this->$name)) {
+            $this->$name = $value;
+        }
     }
 
     public function planes()
     {
         // 页面展示
         PlanesTransform::show($this->planeMoment,true);
-        //实例化单例模式
-        $planeSolution = Solution::getInstance();
+
         // 调用 __set()魔术方法，设置初始值
         try {
-            $planeSolution->planeMoment = $this->planeMoment;
+            $this->planeSolution->planeMoment = $this->planeMoment;
         } catch (MyException $e) {
            ResponseData::error($e);
         }
 
-        /* //调用__get()魔术方法，获取数据
+        /*
         $getPlanesMoment = $planeSolution->planeMoment;
         if($getPlanesMoment instanceof ErrorCode){
-            TraitResponse::fail($getPlanesMoment);
+            ResponseData::error($getPlanesMoment);
         }*/
 
-        $result = $planeSolution->countOfAirPlanes();
+        $result = $this->planeSolution->countOfAirPlanes();
         if($result instanceof ErrorCode) ResponseData::error($result);
         PlanesTransform::show("空中最多有 {$result['ans']} 架飞机");
         PlanesTransform::show("最多飞机的时间段为 {$result['airPlanes']['startTime']} 点 - {$result['airPlanes']['endTime']}点");

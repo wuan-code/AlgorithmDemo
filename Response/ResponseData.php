@@ -20,22 +20,22 @@ class ResponseData extends BaseResponse
 {
     private static $returnType;
 
-    /**
-     * 声明魔术方法
-     * @param $property
-     * @param $value
-     * @note 调用方式：实例化该类，直接声明变量并设置变量值
-     * @throws MyException
-     */
-    public function __set($property, $value)
-    {
-        if (!in_array($property, ResponseEnum::RESPONSE_RETURN_TYPE) ||
-            !in_array($value, ResponseEnum::RESPONSE_TYPE)
-        ) {
-            throw new MyException('VARIABLE_NOT_EXIT');
-        }
-        self::$property = $value;
-    }
+//    /**
+//     * 声明魔术方法
+//     * @param $property
+//     * @param $value
+//     * @note 调用方式：实例化该类，直接声明变量并设置变量值
+//     * @throws MyException
+//     */
+//    public function __set($property, $value)
+//    {
+//        if (!in_array($property, ResponseEnum::RESPONSE_RETURN_TYPE) ||
+//            !in_array($value, ResponseEnum::RESPONSE_TYPE)
+//        ) {
+//            throw new MyException('VARIABLE_NOT_EXIT');
+//        }
+//        self::$property = $value;
+//    }
 
     /**
      * 成功的操作
