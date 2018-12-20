@@ -41,12 +41,11 @@ final class RequestMode extends Mode
      */
     public function cliMode()
     {
-//        if ($this->count > 0) {
-//            echo "请输入要执行的方法或者输入exit结束本次进程\n";
-//        }
-//        $project = trim(fgets(STDIN));
-//        if ($project == 'exit') exit("已结束该请求\n");
-        $project         = 'countingSort';
+        if ($this->count > 0) {
+            echo "请输入要执行的方法或者输入exit结束本次进程\n";
+        }
+        $project = trim(fgets(STDIN));
+        if ($project == 'exit') exit("已结束该请求\n");
         while (!in_array($project, AppEnum::ALL_PROJECT)) {
             echo "该方法不存在，请重新输入\n\n";
             $this->count++;

@@ -18,7 +18,15 @@ class CliTransform extends Transform
 {
     public  function show($data)
     {
-        echo "$data\n\n";
+        if(is_array($data)){
+            foreach ($data as $item){
+                echo "$item  ";
+            }
+            echo "\n\n";
+        }else{
+            echo "$data\n\n";
+        }
+
     }
 
     public  function showTable($data)

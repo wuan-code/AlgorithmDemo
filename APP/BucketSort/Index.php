@@ -50,9 +50,7 @@ class Index
         $this->bucketSortSolution = Solution::getInstance();
         $this->sameProportionSort();
     }
-
-
-
+    
 
     /**
      * 按比例随机的排序实现方案
