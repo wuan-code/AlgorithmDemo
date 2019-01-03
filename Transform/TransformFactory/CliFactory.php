@@ -1,19 +1,25 @@
 <?php
 // +----------------------------------------------------------------------
-// | 工厂模式的接口
+// | Cli显示类型的工厂类
 // +----------------------------------------------------------------------
 // | author    武安y<yaobin24@126.com>
 // +----------------------------------------------------------------------
 // | note
 // +----------------------------------------------------------------------
-// | Date       2018/12/18 Time: 下午8:26
+// | Date       2018/12/18 Time: 下午8:27
 // +----------------------------------------------------------------------
 
-namespace Transform\Factory;
+namespace Transform\TransformFactory;
 
 
 
-interface Factory
+use Transform\BaseTransform\CliTransform;
+
+class CliFactory implements Factory
 {
-    public function create();
+    public function create()
+    {
+        return new CliTransform();
+    }
+
 }

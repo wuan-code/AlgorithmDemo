@@ -10,18 +10,17 @@
 // +----------------------------------------------------------------------
 
 namespace APP;
-
+use Request\StaticFactory;
 
 trait BaseApp
 {
-
     /**
      * 获取请求的数据，并设置变量
      * @param $enums
      */
     private function getRequest($enums)
     {
-        $factory = \Request\StaticFactory::factory();
+        $factory = StaticFactory::factory();
         $result  = $factory->getRequest($enums);
         foreach ($result as $key => $value) {
             $this->$key = $value;
@@ -29,10 +28,10 @@ trait BaseApp
     }
 
     /**
-     * 设置变量
+     * 设置变量，直接过滤未定义的变量
      * @param $name
      * @param $value
-     * @note 过滤未定义的变量
+     * @note
      */
     public function __set($name, $value)
     {

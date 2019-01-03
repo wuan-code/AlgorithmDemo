@@ -47,6 +47,41 @@ class Solution
         // TODO: Implement __clone() method.
     }
 
+
+    /**
+     * 桶排序的基本算法
+     * @param $data
+     * @note  根据权重的最大值和最小值，创建相应的桶。
+     *          建桶,入桶，出桶
+     * @return mixed
+     */
+    public function bucketSort($data)
+    {
+        $weight     = array_column($data, 'weight');
+        $max_weight = max($weight);
+        $min_weight = min($weight);
+        //生成桶,默认每个桶中数据只有0个
+        $bucket = array_fill($min_weight, $max_weight - $min_weight + 1, 0);
+        foreach ($data as $item) {
+            //建桶
+            if (!$bucket[$item['weight']]) {
+                $bucket[$item['weight']] = ['weight' => $item['weight'], 'count' => 0, 'data' => []];
+            }
+            //入桶
+            $bucket[$item['weight']]['count']++;
+            $bucket[$item['weight']]['data'][] = ['id' => $item['id'], 'name' => $item['name']];
+        }
+        // 出桶
+        $result = [];
+        foreach ($bucket as $key => $value) {
+            if (is_array($value) > 0) {
+                $result[$key] = $value;
+
+            }
+        }
+        return $result;
+    }
+
     /**
      * 根据每个用户不同的权重，添加等比例的桶
      * @param int $count 操作总数

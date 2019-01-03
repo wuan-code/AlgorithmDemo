@@ -12,25 +12,30 @@
 namespace Transform;
 
 
+use Library\Mode;
+
 abstract class Transform
 {
     public static $factory;
 
-    abstract public static function show($data);
-
     public static function setFactory()
     {
-        switch ($GLOBALS['mode']) {
-            case 'cli':
-                self::$factory = 'Transform\Factory\CliFactory';
-                break;
-            case 'fpm-fcgi':
-                self::$factory = 'Transform\Factory\FpmFactory';
-                break;
-            default:
-                self::$factory = 'Transform\Factory\CliFactory';
-                break;
-        }
+        $request       = (new Mode())->getModeTransFormFactory();
+        self::$factory = (new $request)->create();
     }
 
+    public static function show($data)
+    {
+        if (!isset(self::$factory)) self::setFactory();
+        self::$factory->show($data);
+    }
+
+
+    public static function showTable($data)
+    {
+        if (!isset(self::$factory)) self::setFactory();
+        self::$factory->showTable($data);
+    }
+
+    abstract static function otherShow($data);
 }

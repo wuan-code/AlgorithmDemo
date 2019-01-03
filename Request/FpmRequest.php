@@ -14,7 +14,7 @@ namespace Request;
 
 class FpmRequest implements Request
 {
-    public function getRequest()
+    public function getRequest(array $data)
     {
         // TODO: Implement getRequest() method.
     }

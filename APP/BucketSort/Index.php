@@ -14,7 +14,6 @@ namespace APP\BucketSort;
 
 use APP\BaseApp;
 use Enums\SortEnum;
-use Request\StaticFactory;
 use Transform\BucketSortTransform;
 
 class Index
@@ -46,19 +45,45 @@ class Index
 
     public function __construct()
     {
-        $this->getRequest(SortEnum::BUCKET_SORT);
         $this->bucketSortSolution = Solution::getInstance();
+        $this->show();
+        $this->bucketSort();
         $this->sameProportionSort();
     }
-    
+
 
     /**
-     * 按比例随机的排序实现方案
+     * 原始数据显示
+     */
+    private function show()
+    {
+        BucketSortTransform::show("原始数据:");
+        BucketSortTransform::showTable($this->data);
+    }
+
+
+    /**
+     * 基本桶排序
+     */
+    private function bucketSort()
+    {
+        $startTime = microtime(true);
+        $newData   = $this->bucketSortSolution->bucketSort($this->data);
+        $endTime   = microtime(true);
+        $timeUse   = $endTime - $startTime;
+        BucketSortTransform::show("桶排序的计算结果:");
+        BucketSortTransform::otherShow($newData);
+        BucketSortTransform::show("使用时间:" . $timeUse);
+
+    }
+
+    /**
+     * 按照权重比例随机排序
      */
     public function sameProportionSort()
     {
-        BucketSortTransform::show("待操作的桶排序的数据:");
-        BucketSortTransform::show($this->data, true);
+        // 获取需要用户输入的数据
+        $this->getRequest(SortEnum::BUCKET_SORT);
 
         $useData   = [];
         $startTime = microtime(true);
@@ -82,11 +107,8 @@ class Index
                 ];
             }
         }
-
         BucketSortTransform::show("具体分配详情:");
-        BucketSortTransform::show($useData, true);
-
-
+        BucketSortTransform::showTable($useData);
         BucketSortTransform::show("按权重比例随机的排序");
         BucketSortTransform::show(str_repeat('-*-*', 10));
         foreach ($newData as $key => $value) {
@@ -94,7 +116,5 @@ class Index
         }
         BucketSortTransform::show(str_repeat('-*-*', 10));
         BucketSortTransform::show("使用时间:" . $timeUse);
-
-
     }
 }

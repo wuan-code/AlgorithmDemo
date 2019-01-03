@@ -15,6 +15,7 @@ namespace Response;
 use Enums\CodeEnum;
 use Enums\ResponseEnum;
 use Exceptions\MyException;
+use Library\Mode;
 
 class ResponseData extends BaseResponse
 {
@@ -44,7 +45,7 @@ class ResponseData extends BaseResponse
      */
     public static function success($data = [])
     {
-        if(!self::$returnType) self::setReturnType();
+        if (!self::$returnType) self::setReturnType();
         $response         = [
             "status" => "sucess",
             "code"   => 200,
@@ -62,7 +63,7 @@ class ResponseData extends BaseResponse
      */
     public static function error($codeEnum, $notice = '')
     {
-        if(!self::$returnType) self::setReturnType();
+        if (!self::$returnType) self::setReturnType();
         // 适配直接调用
         if (is_string($codeEnum)) {
             $codeEnum = CodeEnum::getConstant($codeEnum) ? CodeEnum::getConstant($codeEnum) : CodeEnum::getConstant('OPERATION_DATA_FAIL');
@@ -103,17 +104,18 @@ class ResponseData extends BaseResponse
      */
     public static function setReturnType()
     {
-       switch ($GLOBALS['mode']){
-           case 'cli':
-               self::$returnType = 'web';
-               break;
-           case 'fpm-fcgi':
-               self::$returnType = 'json';
-               break;
-           default:
-               self::$returnType = 'web';
-               break;
-       }
+        $mode = (new Mode())->mode;
+        switch ($mode) {
+            case 'cli':
+                self::$returnType = 'web';
+                break;
+            case 'fpm-fcgi':
+                self::$returnType = 'json';
+                break;
+            default:
+                self::$returnType = 'web';
+                break;
+        }
     }
 
 }

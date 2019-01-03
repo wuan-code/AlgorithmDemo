@@ -9,11 +9,9 @@ spl_autoload_register('loadprint');
 require __DIR__ . '/vendor/autoload.php';
 // 添加扩展类
 require __DIR__ . '/Library/helpers.php';
-
-$GLOBALS['mode'] = php_sapi_name();
-$request         = new \Library\RequestMode();
+$mode         = new \Library\Mode( php_sapi_name());
 try {
-    $project = $request->getMode();
+    $project = $mode->getMode();
 } catch (\Exceptions\MyException $e) {
     \Response\ResponseData::error($e);
 }

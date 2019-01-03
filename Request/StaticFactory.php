@@ -12,21 +12,14 @@
 namespace Request;
 
 
+use Library\Mode;
+
 final class StaticFactory
 {
     public static function factory()
     {
-        switch ($GLOBALS['mode']) {
-            case 'cli':
-                return new CliRequest();
-                break;
-            case 'fpm-fcgi':
-                return new FpmRequest();
-                break;
-            default:
-                return new CliRequest();
-                break;
-        }
+        $request = (new Mode())->getModeRequest();
+        return new $request;
 
     }
 }

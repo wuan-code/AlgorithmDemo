@@ -26,7 +26,7 @@ class CliRequest implements Request
         $request = trim(fgets(STDIN));
         if ($request == 'exit') exit("已结束该请求\n");
         $request = explode(',', $request);
-        while (count($request) != count($data)) {
+        while (count($request) != count($data) || (count($request) == 1 && empty($request[0]))) {
             $this->_count++;
             return $this->getRequest($data);
         }

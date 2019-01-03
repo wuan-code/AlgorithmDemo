@@ -14,15 +14,19 @@ namespace Transform;
 
 class BucketSortTransform extends Transform
 {
-    public static function show($data, $table = false)
+
+    public static function otherShow($data)
     {
-        if (!isset(self::$factory)) self::setFactory();
-        $factory = (new self::$factory)->create();
-        if ($table) {
-            $factory->showTable($data);
-        } else {
-            $factory->show($data);
+        $bucketData = [];
+        foreach ($data as $key => $item) {
+            $userData     = implode(array_column($item['data'], 'name'), ',');
+            $bucketData[] = [
+                'weight'   => $item['weight'],
+                'userData' => $userData,
+                'count'    => $item['count'],
+            ];
         }
+        self::showTable($bucketData);
     }
 
 

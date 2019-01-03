@@ -16,20 +16,20 @@ use jc21\CliTable;
 
 class CliTransform extends Transform
 {
-    public  function show($data)
+    public function show($data)
     {
-        if(is_array($data)){
-            foreach ($data as $item){
+        if (is_array($data)) {
+            foreach ($data as $item) {
                 echo "$item  ";
             }
             echo "\n\n";
-        }else{
+        } else {
             echo "$data\n\n";
         }
 
     }
 
-    public  function showTable($data)
+    public function showTable($data)
     {
         $table = new CliTable();
         $table->setChars(array(
@@ -52,7 +52,7 @@ class CliTransform extends Transform
         $table->setTableColor('green');
         $table->setHeaderColor('yellow');
         $keys = getKeysByThreeDimensionalArray($data);
-        foreach ($keys as $k => $v){
+        foreach ($keys as $k => $v) {
             $table->addField($v, $k);
         }
         $table->injectData($data);

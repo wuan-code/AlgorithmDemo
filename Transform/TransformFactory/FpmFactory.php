@@ -9,7 +9,7 @@
 // | Date       2018/12/18 Time: 下午8:27
 // +----------------------------------------------------------------------
 
-namespace Transform\Factory;
+namespace Transform\TransformFactory;
 
 
 use Transform\BaseTransform\FpmTransform;

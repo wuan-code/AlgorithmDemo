@@ -29,6 +29,9 @@ class Index
         $this->countingSort();
     }
 
+    /**
+     * 计数排序
+     */
     public function countingSort()
     {
         $requestArray = $result = [];

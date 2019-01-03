@@ -50,7 +50,7 @@ class Planes
     public function planes()
     {
         // 页面展示
-        PlanesTransform::show($this->planeMoment,true);
+        PlanesTransform::showTable($this->planeMoment);
 
         // 调用 __set()魔术方法，设置初始值
         try {
