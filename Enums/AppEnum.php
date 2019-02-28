@@ -17,11 +17,12 @@ class AppEnum
     // 默认的项目
     const DEFAULT_PROJECT = ['plane'];
     // 所有可执行的项目
-    const ALL_PROJECT = ['plane', 'reward', 'bucketSort', 'countingSort'];
+    const ALL_PROJECT = ['plane', 'reward', 'bucketSort', 'countingSort','crm'];
     // 项目对应的方法（其实可以合并在一起，用array_keys()方法来获取key）
     const ALL_PROJECT_FUNCTION = ['plane'        => 'APP\AirPlane\Planes',
                                   'reward'       => 'APP\Reward\Reward',
                                   'bucketSort'   => 'APP\BucketSort\Index',
-                                  'countingSort' => 'APP\CountingSort\Index'];
+                                  'countingSort' => 'APP\CountingSort\Index',
+                                  'crm'          => 'APP\CRM\Index'];
 
 }

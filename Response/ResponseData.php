@@ -52,6 +52,7 @@ class ResponseData extends BaseResponse
             "msg"    => "请求成功",
         ];
         $response['data'] = ($data instanceof SuccessCode) ? $data->data : $data;
+        // 调用BaseResponse的方法
         return call_user_func_array(array(__CLASS__, self::$returnType), [$response]);
     }
 

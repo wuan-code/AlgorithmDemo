@@ -11,11 +11,11 @@ require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/Library/helpers.php';
 $mode         = new \Library\Mode( php_sapi_name());
 try {
-    $project = $mode->getMode();
+    $result = $mode->getMode();
 } catch (\Exceptions\MyException $e) {
     \Response\ResponseData::error($e);
 }
-new $project;
+new $result['class']($result['project']);
 
 
 
