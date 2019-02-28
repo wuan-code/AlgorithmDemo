@@ -59,3 +59,13 @@ $response    .= $field;
 
 ### 线性排序算法：计数排序、桶排序、基数排序
 
+
+zsh 配合快速使用： *** 指获取到的具体地址
+1、打开配置
+vim ~/.zshrc
+2、设置别名
+alias al="php /***/AlgorithmDemo/index.php"
+3、修改配置文件生效
+source ~/.zshrc
+4、使用方法(打开item)：
+~ al
