@@ -24,6 +24,7 @@ class CodeEnum
 
     const VARIABLE_NOT_EXIT = ['code' => 20000, 'msg' => '该变量不存在'];
     const TRANSFORM_DATA_NOT_EXIT = ['code' => 20001, 'msg' => '待改变的变量不存在'];
+    const INPUT_DATA_NOT_ALL_ALPHABET= ['code' => 20002, 'msg' => '输入的数据存在非字母数据'];
 
     const PROJECT_IS_NOT_EXIT = ['code' => 50000, 'msg' => '请求的方法不存在'];
 

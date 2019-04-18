@@ -15,7 +15,11 @@ try {
 } catch (\Exceptions\MyException $e) {
     \Response\ResponseData::error($e);
 }
-new $result['class']($result['project']);
+if(isset($result['project'])){
+    new $result['class']($result['project']);
+}else{
+    new $result;
+}
 
 
 
