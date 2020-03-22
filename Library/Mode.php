@@ -52,7 +52,7 @@ final class Mode
      * @return mixed
      * @throws MyException
      */
-    public function getMode()
+    public function setModeRequest()
     {
         $ModeMethod = $this->isModeMethod();
         if ($ModeMethod) {
